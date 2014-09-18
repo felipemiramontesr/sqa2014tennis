@@ -13,12 +13,15 @@ class Match:
         del self.score[:]
         self.score.append("0-0")
         self.fwinner = "none"
+
     def score_set(self):
         self.winner()
         return "{0} | {1}".format(self.mgn, self.scoreset())
+
     def startwinner(self, pw):
         if self.fwinner == "none":
             self.fwinner = pw
+
     def scoreset(self):
         sscore = ""
         start = 0
@@ -29,17 +32,20 @@ class Match:
             else:
                 sscore = sscore + ", " + index
         return sscore
+
     def sortwinnerscore(self, pw, sp1, sp2):
         self.startwinner(pw)
         if self.fwinner == pw:
             return sp1 + "-" + sp2
         else:
             return sp2 + "-" + sp1
+
     def save_set_won(self, player):
         if(player == self.p1):
             self.w1 += 1
         else:
             self.w2 += 1
+
     def save_score_set(self, sp1, sp2, ns, pw):
         if(ns == "1st"):
             self.score[0] = self.sortwinnerscore(
@@ -47,6 +53,7 @@ class Match:
         else:
             self.score.insert(self.opcionset.get(
                 ns), self.sortwinnerscore(pw, sp1, sp2))
+
     def winner(self):
         nm = 1
         if int(self.pacted_sets) == 5:
