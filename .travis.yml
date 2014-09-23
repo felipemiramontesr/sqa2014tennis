@@ -1,15 +1,15 @@
+
 language: python
 python:
-  - "2.7"
+- "2.7"
 # command to install dependencies
 install: "pip install -r requirements.txt"
-before_script: 
-  - "flake8 --ignore=F403,E501 app tests "
+before_script:
+- "flake8 --ignore=F403 app tests "
 # command to run tests
-script: 
-  - nosetests --with-doctest --with-coverage -s app
-  - lettuce tests/
-  - coverage run tests/features/steps.py
-
+script:
+- lettuce tests/
+- nosetests --with-doctest --with-coverage -s app
+- coverage run tests/features/steps.py
 after_script:
 -coverage report
